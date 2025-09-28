@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Mass Reporter - DarkForge X</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix"></canvas>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-bug"></i>
+                <span>DARKFORGE X</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#reporter" class="nav-link">Reporter</a>
+                <a href="#stats" class="nav-link">Statistics</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h1 class="glitch" data-text="INSTAGRAM MASS REPORTER">INSTAGRAM MASS REPORTER</h1>
+                    <p class="subtitle">Advanced Mass Reporting Platform</p>
+                    <div class="features">
+                        <div class="feature-card">
+                            <i class="fas fa-bolt"></i>
+                            <h3>Bulk Reporting</h3>
+                            <p>Send 1000+ reports simultaneously</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-user-secret"></i>
+                            <h3>IP Rotation</h3>
+                            <p>50,000+ rotating IP addresses</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Stealth Mode</h3>
+                            <p>Undetectable reporting technology</p>
+                        </div>
+                    </div>
+                    <button class="cta-button" onclick="showSection('reporter')">
+                        <i class="fas fa-rocket"></i>
+                        LAUNCH REPORTER
+                    </button>
+                </div>
+            </section>
+
+            <!-- Reporter Section -->
+            <section id="reporter" class="section">
+                <div class="reporter-container">
+                    <h2><i class="fas fa-crosshairs"></i> TARGET SELECTION</h2>
+                    
+                    <div class="input-group">
+                        <label for="username"><i class="fas fa-at"></i> Instagram Username</label>
+                        <input type="text" id="username" placeholder="Enter target username (without @)" class="hack-input">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reportCount"><i class="fas fa-bomb"></i> Number of Reports</label>
+                        <select id="reportCount" class="hack-select">
+                            <option value="50">50 Reports (Fast)</option>
+                            <option value="100">100 Reports</option>
+                            <option value="250">250 Reports</option>
+                            <option value="500">500 Reports (Recommended)</option>
+                            <option value="1000">1000 Reports (Nuclear)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reportReason"><i class="fas fa-exclamation-triangle"></i> Report Reason</label>
+                        <select id="reportReason" class="hack-select">
+                            <option value="spam">Spam</option>
+                            <option value="nudity">Nudity</option>
+                            <option value="hate_speech">Hate Speech</option>
+                            <option value="bullying">Bullying</option>
+                            <option value="scam">Scam/Fraud</option>
+                            <option value="impersonation">Impersonation</option>
+                        </select>
+                    </div>
+
+                    <div class="attack-options">
+                        <h3><i class="fas fa-cog"></i> Attack Mode</h3>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="mode" value="stealth" checked>
+                                <i class="fas fa-user-ninja"></i>
+                                <span>Stealth Mode</span>
+                                <small>Slow & Undetectable</small>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="mode" value="rapid">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Rapid Fire</span>
+                                <small>Fast Execution</small>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="mode" value="nuclear">
+                                <i class="fas fa-radiation"></i>
+                                <span>Nuclear Option</span>
+                                <small>Maximum Power</small>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button id="launchAttack" class="attack-button" onclick="launchAttack()">
+                        <i class="fas fa-play"></i>
+                        LAUNCH MASS ATTACK
+                    </button>
+
+                    <!-- Progress Section -->
+                    <div id="progressSection" class="progress-section" style="display: none;">
+                        <h3><i class="fas fa-satellite-dish"></i> ATTACK IN PROGRESS</h3>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div id="progressFill" class="progress-fill"></div>
+                            </div>
+                            <span id="progressText">0%</span>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-check-circle"></i>
+                                <span id="successCount">0</span>
+                                <small>Successful</small>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-times-circle"></i>
+                                <span id="failedCount">0</span>
+                                <small>Failed</small>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-bolt"></i>
+                                <span id="totalCount">0</span>
+                                <small>Total Sent</small>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-clock"></i>
+                                <span id="timeElapsed">0s</span>
+                                <small>Time</small>
+                            </div>
+                        </div>
+
+                        <div class="log-container">
+                            <h4><i class="fas fa-terminal"></i> Attack Log</h4>
+                            <div id="attackLog" class="log-output"></div>
+                        </div>
+
+                        <button id="stopAttack" class="stop-button" onclick="stopAttack()">
+                            <i class="fas fa-stop"></i>
+                            STOP ATTACK
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="stats" class="section">
+                <div class="stats-container">
+                    <h2><i class="fas fa-chart-bar"></i> ATTACK STATISTICS</h2>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card-large">
+                            <i class="fas fa-crosshairs"></i>
+                            <div class="stat-info">
+                                <h3 id="totalAttacks">0</h3>
+                                <p>Total Attacks Launched</p>
+                            </div>
+                        </div>
+                        <div class="stat-card-large">
+                            <i class="fas fa-paper-plane"></i>
+                            <div class="stat-info">
+                                <h3 id="totalReports">0</h3>
+                                <p>Total Reports Sent</p>
+                            </div>
+                        </div>
+                        <div class="stat-card-large">
+                            <i class="fas fa-ban"></i>
+                            <div class="stat-info">
+                                <h3 id="successRate">0%</h3>
+                                <p>Success Rate</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-attacks">
+                        <h3><i class="fas fa-history"></i> Recent Attacks</h3>
+                        <div id="recentAttacks" class="attacks-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 DarkForge X - For Educational Purposes Only</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
